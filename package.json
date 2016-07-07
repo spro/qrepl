@@ -1,0 +1,23 @@
+{
+    "name": "qrepl",
+    "version": "0.1.0",
+    "description": "quick repl helper",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/spro/qrepl.git"
+    },
+    "author": {
+        "name": "Sean Robertson",
+        "url": "http://sprobertson.com/"
+    },
+    "keywords": [
+        "repl",
+        "prontotype"
+    ],
+    "main": "lib/index.js",
+    "scripts": {
+        "build": "coffee -o lib -c src"
+    },
+    "dependencies": {
+    }
+}
