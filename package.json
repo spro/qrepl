@@ -1,6 +1,6 @@
 {
   "name": "qrepl",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "quick repl helper",
   "repository": {
     "type": "git",
@@ -15,7 +15,9 @@
   "scripts": {
     "build": "coffee -o lib -c src"
   },
-  "dependencies": {},
+  "dependencies": {
+      "object-assign": "4.1.0"
+  },
   "bugs": {
     "url": "https://github.com/spro/qrepl/issues"
   },

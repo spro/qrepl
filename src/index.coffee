@@ -2,6 +2,7 @@ readline = require 'readline'
 fs = require 'fs'
 path = require 'path'
 util = require 'util'
+objectAssign = require 'object-assign'
 
 getHomeDir = ->
     return process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
@@ -21,7 +22,7 @@ module.exports = (name, fn, options={}) ->
     saveHistory = (line) ->
         fs.appendFile historyPath(name), line + '\n'
 
-    rl = readline.createInterface Object.assign
+    rl = readline.createInterface objectAssign
         input: process.stdin
         output: process.stdout
     , options
