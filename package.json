@@ -1,23 +1,24 @@
 {
-    "name": "qrepl",
-    "version": "0.1.0",
-    "description": "quick repl helper",
-    "repository": {
-        "type": "git",
-        "url": "http://github.com/spro/qrepl.git"
-    },
-    "author": {
-        "name": "Sean Robertson",
-        "url": "http://sprobertson.com/"
-    },
-    "keywords": [
-        "repl",
-        "prontotype"
-    ],
-    "main": "lib/index.js",
-    "scripts": {
-        "build": "coffee -o lib -c src"
-    },
-    "dependencies": {
-    }
+  "name": "qrepl",
+  "version": "0.1.1",
+  "description": "quick repl helper",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/spro/qrepl.git"
+  },
+  "author": "Sean Robertson (http://sprobertson.com/)",
+  "keywords": [
+    "repl",
+    "prontotype"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "coffee -o lib -c src"
+  },
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/spro/qrepl/issues"
+  },
+  "homepage": "https://github.com/spro/qrepl#readme",
+  "license": "MIT"
 }

@@ -9,7 +9,7 @@ getHomeDir = ->
 historyPath = (name) ->
     path.resolve getHomeDir(), '.' + name + '.qrepl'
 
-module.exports = (name, fn) ->
+module.exports = (name, fn, options={}) ->
 
     loadHistory = (cb) ->
         fs.readFile historyPath(name), (err, history_data) ->
@@ -21,9 +21,10 @@ module.exports = (name, fn) ->
     saveHistory = (line) ->
         fs.appendFile historyPath(name), line + '\n'
 
-    rl = readline.createInterface
+    rl = readline.createInterface Object.assign
         input: process.stdin
         output: process.stdout
+    , options
 
     # Overload readline's addHistory to save to our history file
     rl_addHistory = rl._addHistory
