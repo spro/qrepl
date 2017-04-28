@@ -1,6 +1,6 @@
 {
   "name": "qrepl",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "quick repl helper",
   "repository": {
     "type": "git",
