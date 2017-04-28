@@ -10,6 +10,20 @@ getHomeDir = ->
 historyPath = (name) ->
     path.resolve getHomeDir(), '.' + name + '.qrepl'
 
+colors =
+    red: 31
+    green: 32
+    yellow: 33
+    blue: 34
+    magenta: 35
+    cyan: 36
+
+colored = (s, color) ->
+    color_code = colors[color] or 0
+    prefix = '\x1b[' + color_code + 'm'
+    suffix = '\x1b[0m'
+    return prefix + s + suffix
+
 module.exports = (name, fn, options={}) ->
 
     loadHistory = (cb) ->
@@ -20,7 +34,7 @@ module.exports = (name, fn, options={}) ->
             cb null, history_lines
 
     saveHistory = (line) ->
-        fs.appendFile historyPath(name), line + '\n'
+        fs.appendFileSync historyPath(name), line + '\n'
 
     rl = readline.createInterface objectAssign
         input: process.stdin
@@ -40,16 +54,23 @@ module.exports = (name, fn, options={}) ->
         rl.history.push.apply(rl.history, saved_history)
 
     prompt_text = '> '
-    color = 36
-    prefix = '\x1b[' + color + 'm'
-    suffix = '\x1b[0m'
-    rl.setPrompt prefix + prompt_text + suffix, prompt_text.length
+    rl.setPrompt colored(prompt_text, 'cyan'), prompt_text.length
 
     rl.prompt()
 
     rl.on 'line', (line) ->
         line = line.trim()
         fn line, (err, result) ->
-            console.log util.inspect result, {colors: true, depth: null}
+            if err?
+                if Array.isArray err
+                    err.map (err) ->
+                        console.error colored(err.message, 'red')
+                else
+                    console.error err
+            else if result?
+                if typeof result == 'string'
+                    console.log result
+                else
+                    console.log util.inspect result, {colors: true, depth: null}
             rl.prompt()
 
